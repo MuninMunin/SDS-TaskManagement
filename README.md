@@ -20,10 +20,9 @@ The project focuses on task management, offering users an improved solution for 
             - Update task status (Mark task done).
 
 ## Authentication
-![Image](Picture/demo%20image.png)
 
 1. **Federate Authentication**
-    
+   ![Image](Picture/demo%20image.png)
     Beside storing user’s account information, it is also a another good choice to choose a trust third party such as google authentication for register and login and it can be built by using firebase.
     
     ```jsx
@@ -164,7 +163,7 @@ The project focuses on task management, offering users an improved solution for 
     ```
 
 
-2. **Password Hash**
+3. **Password Hash**
     
     When users register their account username and password in our system, to ensure user’s data security we have implement password hash during registration this will ensure the login process only user input with the correct password are authorized. 
     
