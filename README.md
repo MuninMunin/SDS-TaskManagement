@@ -20,6 +20,8 @@ The project focuses on task management, offering users an improved solution for 
             - Update task status (Mark task done).
 
 ## Authentication
+![Image](Picture/demo%20image.png)
+
 1. **Password Hash**
     
     When users register their account username and password in our system, to ensure user’s data security we have implement password hash during registration this will ensure the login process only user input with the correct password are authorized. 
