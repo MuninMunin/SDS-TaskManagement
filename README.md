@@ -1,13 +1,9 @@
 # SDS-TaskManagement
 
-# TaskManagement System
 ## Introduction
 The project focuses on task management, offering users an improved solution for managing tasks with effective functions. With more visibility of the teamwork environment, the system allows users to work and communicate confidentially within the association. However, a system is not only about functionalities therefore Implement security into the system's design from the beginning is significant. 
 
 ## Defining User
-
----
-
 1. **Admin ( of the System)**
     - Has the highest privileges monitoring the system.
 2. **User**
@@ -24,9 +20,6 @@ The project focuses on task management, offering users an improved solution for 
             - Update task status (Mark task done).
 
 ## Authentication
-
----
-
 1. **Password Hash**
     
     When users register their account username and password in our system, to ensure user’s data security we have implement password hash during registration this will ensure the login process only user input with the correct password are authorized. 
