@@ -153,144 +153,143 @@ The project focuses on task management, offering users an improved solution for 
             });
     }
     ```
+2. **Federate Authentication**
     
-    1. **Federate Authentication**
-        
-        Beside storing user’s account information, it is also a another good choice to choose a trust third party such as google authentication for register and login and it can be built by using firebase.
-        
-        ```jsx
-        
-        var firebaseConfig = {
-            apiKey: "API-KEY",
-            authDomain: "Auth-Domain",
-            projectId: "ID",
-            storageBucket: "ID",
-            messagingSenderId: "ID",
-            appId: "ID"
-          };
-        
-          firebase.initializeApp(firebaseConfig)
-          const auth = firebase.auth()
-          const database = firebase.database()
-          
-          function register () {
-            // Get all our input fields
-            email = document.getElementById('email').value
-            password = document.getElementById('password').value
-            full_name = document.getElementById('full_name').value
-        
-            // Validate input
-            if (validate_email(email) == false || validate_password(password) == false) {
-              alert('Email or Password is empty')
-              return 
-            }
-            if (validate_field(full_name) == false) {
-              alert('One or More Extra Fields is Outta Line!!')
-              return
-            }
-            
-           
-            auth.createUserWithEmailAndPassword(email, password)
-            .then(function() {
-              var user = auth.currentUser
-              var database_ref = database.ref()
-              var user_data = {
-                email : email, 
-                full_name : full_name,
-                last_login : Date.now()
-              }
-          
-              database_ref.child('users/' + user.uid).set(user_data)
-              alert('User Created!!')
-            })
-            .catch(function(error) {
-              var error_code = error.code
-              var error_message = error.message
-          
-              alert(error_message)
-            })
-          }
-          
-          function login () {
-            email = document.getElementById('email').value
-            password = document.getElementById('password').value
-          
-            if (validate_email(email) == false || validate_password(password) == false) {
-              alert('Email or Password is empty')
-              return 
-            }
-          
-            auth.signInWithEmailAndPassword(email, password)
-            .then(function() {
-              var user = auth.currentUser
-              var database_ref = database.ref()
-              var user_data = {
-                last_login : Date.now()
-              }
-              database_ref.child('users/' + user.uid).update(user_data)
-              alert('User Logged In!!')
-            })
-            .catch(function(error) {
-              // Firebase will use this to alert of its errors
-              var error_code = error.code
-              var error_message = error.message
-          
-              alert(error_message)
-            })
-          }
-        
-          function validate_email(email) {
-            expression = /^[^@]+@\w+(\.\w+)+\w$/
-            if (expression.test(email) == true) {
-              return true
-            } else {
-              return false
-            }
-          }
-          
-          function validate_password(password) {
-            // Firebase only accepts lengths greater than 6
-            if (password < 6) {
-              return false
-            } else {
-              return true
-            }
-          }
-          
-          function validate_field(field) {
-            if (field == null) {
-              return false
-            }
-          
-            if (field.length <= 0) {
-              return false
-            } else {
-              return true
-            }
-          }
-        
-        function googleSignIn() {
-          var provider = new firebase.auth.GoogleAuthProvider();
-          firebase.auth().signInWithPopup(provider)
-            .then(function(result) {
-              var token = result.credential.accessToken;
-              var user = result.user;
-              var database_ref = firebase.database().ref();
-              var user_data = {
-                email: user.email,
-                full_name: user.displayName,
-                last_login: Date.now()
-              };
-              database_ref.child('users/' + user.uid).set(user_data);
-              // User is signed in.
-              alert('Google user signed in!');
-            }).catch(function(error) {
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              var email = error.email;
-              var credential = error.credential;
-              alert(errorMessage);
-            });
+    Beside storing user’s account information, it is also a another good choice to choose a trust third party such as google authentication for register and login and it can be built by using firebase.
+    
+    ```jsx
+    
+    var firebaseConfig = {
+        apiKey: "API-KEY",
+        authDomain: "Auth-Domain",
+        projectId: "ID",
+        storageBucket: "ID",
+        messagingSenderId: "ID",
+        appId: "ID"
+      };
+    
+      firebase.initializeApp(firebaseConfig)
+      const auth = firebase.auth()
+      const database = firebase.database()
+      
+      function register () {
+        // Get all our input fields
+        email = document.getElementById('email').value
+        password = document.getElementById('password').value
+        full_name = document.getElementById('full_name').value
+    
+        // Validate input
+        if (validate_email(email) == false || validate_password(password) == false) {
+          alert('Email or Password is empty')
+          return 
+        }
+        if (validate_field(full_name) == false) {
+          alert('One or More Extra Fields is Outta Line!!')
+          return
         }
         
-        ```
+       
+        auth.createUserWithEmailAndPassword(email, password)
+        .then(function() {
+          var user = auth.currentUser
+          var database_ref = database.ref()
+          var user_data = {
+            email : email, 
+            full_name : full_name,
+            last_login : Date.now()
+          }
+      
+          database_ref.child('users/' + user.uid).set(user_data)
+          alert('User Created!!')
+        })
+        .catch(function(error) {
+          var error_code = error.code
+          var error_message = error.message
+      
+          alert(error_message)
+        })
+      }
+      
+      function login () {
+        email = document.getElementById('email').value
+        password = document.getElementById('password').value
+      
+        if (validate_email(email) == false || validate_password(password) == false) {
+          alert('Email or Password is empty')
+          return 
+        }
+      
+        auth.signInWithEmailAndPassword(email, password)
+        .then(function() {
+          var user = auth.currentUser
+          var database_ref = database.ref()
+          var user_data = {
+            last_login : Date.now()
+          }
+          database_ref.child('users/' + user.uid).update(user_data)
+          alert('User Logged In!!')
+        })
+        .catch(function(error) {
+          // Firebase will use this to alert of its errors
+          var error_code = error.code
+          var error_message = error.message
+      
+          alert(error_message)
+        })
+      }
+    
+      function validate_email(email) {
+        expression = /^[^@]+@\w+(\.\w+)+\w$/
+        if (expression.test(email) == true) {
+          return true
+        } else {
+          return false
+        }
+      }
+      
+      function validate_password(password) {
+        // Firebase only accepts lengths greater than 6
+        if (password < 6) {
+          return false
+        } else {
+          return true
+        }
+      }
+      
+      function validate_field(field) {
+        if (field == null) {
+          return false
+        }
+      
+        if (field.length <= 0) {
+          return false
+        } else {
+          return true
+        }
+      }
+    
+    function googleSignIn() {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then(function(result) {
+          var token = result.credential.accessToken;
+          var user = result.user;
+          var database_ref = firebase.database().ref();
+          var user_data = {
+            email: user.email,
+            full_name: user.displayName,
+            last_login: Date.now()
+          };
+          database_ref.child('users/' + user.uid).set(user_data);
+          // User is signed in.
+          alert('Google user signed in!');
+        }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+          alert(errorMessage);
+        });
+    }
+    
+    ```
