@@ -1,13 +1,7 @@
 # SDS-TaskManagement
 
 # TaskManagement System
-
----
-
 ## Introduction
-
----
-
 The project focuses on task management, offering users an improved solution for managing tasks with effective functions. With more visibility of the teamwork environment, the system allows users to work and communicate confidentially within the association. However, a system is not only about functionalities therefore Implement security into the system's design from the beginning is significant. 
 
 ## Defining User
